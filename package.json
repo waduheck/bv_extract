@@ -1,0 +1,26 @@
+{
+  "name": "bilibili-bv-extract",
+  "version": "1.1.0",
+  "description": "B站BV号批量获取器 - 快速复制B站视频BV号，支持已复制视频的视觉标记",
+  "scripts": {
+    "build": "echo \"使用Chrome加载解压后的扩展文件夹即可\" && exit 0",
+    "lint": "eslint --ext .js .",
+    "format": "prettier --write \"**/*.{js,html,css,json}\"",
+    "zip": "zip -r bilibili-bv-extract.zip manifest.json background.js contentScript.js contentStyle.css popup.html popup.js icons/ LICENSE README.md"
+  },
+  "keywords": [
+    "bilibili",
+    "chrome-extension",
+    "bv",
+    "video-id",
+    "utility"
+  ],
+  "author": "BV Extract",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/chrome": "^0.0.309",
+    "eslint": "^8.50.0",
+    "prettier": "^3.0.3",
+    "typescript": "^5.8.2"
+  }
+}

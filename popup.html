@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>BV号提取器</title>
+  <style>
+    body {
+      width: 300px;
+      padding: 16px;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    #toggleMode {
+      padding: 12px 20px;
+      border: none;
+      border-radius: 8px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      background: #f0f0f0;
+      color: #333;
+    }
+
+    #toggleMode.active {
+      background: #1a73e8;
+      color: white;
+    }
+
+    #toggleMode:hover {
+      opacity: 0.9;
+    }
+
+    #status {
+      padding: 12px;
+      border-radius: 6px;
+      font-size: 14px;
+      text-align: center;
+    }
+
+    .status-active {
+      background: #e8f0fe;
+      color: #1a73e8;
+    }
+
+    .status-inactive {
+      background: #f8f9fa;
+      color: #5f6368;
+    }
+
+    .description {
+      font-size: 13px;
+      color: #5f6368;
+      line-height: 1.4;
+      margin-top: 8px;
+    }
+
+    .feature-info {
+      display: flex;
+      align-items: center;
+      font-size: 13px;
+      color: #5f6368;
+      background: #f8f9fa;
+      padding: 10px;
+      border-radius: 6px;
+      margin-top: 8px;
+    }
+    
+    .check-mark-sample {
+      width: 18px;
+      height: 18px;
+      background: #4CAF50;
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      margin-right: 8px;
+    }
+
+    .bv-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 16px;
+      font-size: 13px;
+    }
+
+    .bv-table th,
+    .bv-table td {
+      padding: 8px;
+      text-align: left;
+      border-bottom: 1px solid #eee;
+    }
+
+    .bv-table th {
+      font-weight: 500;
+      color: #5f6368;
+      background: #f8f9fa;
+    }
+
+    .bv-table tr:hover {
+      background: #f8f9fa;
+    }
+
+    .copy-btn {
+      padding: 4px 8px;
+      border: none;
+      border-radius: 4px;
+      background: #1a73e8;
+      color: white;
+      cursor: pointer;
+      font-size: 12px;
+    }
+
+    .copy-btn:hover {
+      opacity: 0.9;
+    }
+
+    .clear-all {
+      padding: 8px;
+      border: 1px solid #dc3545;
+      border-radius: 4px;
+      background: white;
+      color: #dc3545;
+      cursor: pointer;
+      font-size: 12px;
+      margin-top: 8px;
+    }
+
+    .clear-all:hover {
+      background: #dc3545;
+      color: white;
+    }
+
+    .empty-state {
+      text-align: center;
+      color: #5f6368;
+      padding: 16px;
+      font-size: 13px;
+    }
+
+    .table-actions {
+      display: flex;
+      gap: 8px;
+      margin-top: 16px;
+    }
+
+    .copy-all {
+      flex: 1;
+      padding: 8px;
+      border: 1px solid #1a73e8;
+      border-radius: 4px;
+      background: white;
+      color: #1a73e8;
+      cursor: pointer;
+      font-size: 12px;
+      transition: all 0.2s ease;
+    }
+
+    .copy-all:hover {
+      background: #1a73e8;
+      color: white;
+    }
+
+    .button-group {
+      display: flex;
+      gap: 8px;
+      margin-top: 8px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <button id="toggleMode">开启BV获取模式</button>
+    <div id="status" class="status-inactive">当前模式：正常浏览模式</div>
+    <div class="description">
+      开启BV获取模式后，点击视频封面将不会跳转页面，而是直接复制视频的BV号到剪贴板。再次点击按钮可以切换回正常浏览模式。
+    </div>
+    
+    <div class="feature-info">
+      <div class="check-mark-sample">✓</div>
+      <div>已复制的视频将会显示绿色勾号标记，方便您区分</div>
+    </div>
+    
+    <div id="bvListContainer">
+      <table class="bv-table">
+        <thead>
+          <tr>
+            <th>序号</th>
+            <th>BV号</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody id="bvList">
+          <!-- BV号列表将在这里动态生成 -->
+        </tbody>
+      </table>
+      <div class="button-group">
+        <button class="copy-all" id="copyAll">一键复制全部BV号</button>
+        <button class="clear-all" id="clearAll">清空列表</button>
+      </div>
+      <div class="empty-state" id="emptyState" style="display: none;">
+        暂无复制的BV号
+      </div>
+    </div>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html> 
