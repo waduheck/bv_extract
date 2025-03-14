@@ -173,7 +173,7 @@ const handleCopyAll = async () => {
     return;
   }
   
-  const bvString = bvHistory.join(' ');
+  const bvString = bvHistory.join('\n');
   try {
     // 创建一个临时输入框并复制
     const textarea = document.createElement('textarea');
